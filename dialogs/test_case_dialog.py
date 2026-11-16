@@ -2,6 +2,7 @@ from services.test_case_service import TestCaseService
 from models.steps import Step
 from models.create_test_case_dto import CreateTestCaseDto
 from utilities.input_helper import get_required_input, check_test_case_id, clear_screen
+from utilities.console_color import ConsoleColor
 
 
 class TestCaseDialog:
@@ -10,7 +11,7 @@ class TestCaseDialog:
 
     def add_test_case(self) -> None:
         print("")
-        print("---Test Case Register---")
+        print(f"{ConsoleColor.BOLD}{ConsoleColor.BLUE}---Test Case Register---{ConsoleColor.RESET}")
         print("")
         print("To register a new test case enter following instructions\n")
 
@@ -26,7 +27,7 @@ class TestCaseDialog:
 
             #enter the test case steps
             print("")
-            print("To add the test case steps enter following information\n")
+            print("To add the test case steps enter following instructions\n")
 
             steps= []
             step_number = 1
@@ -63,12 +64,12 @@ class TestCaseDialog:
 
             if result.succeeded and result.test_case_data is not None:
                 print(
-                    f"\nTest Case: {result.test_case_data.test_case_id} "
+                    f"{ConsoleColor.GREEN}\nTest Case: {result.test_case_data.test_case_id} "
                     f"has successfully registered with ID "
-                    f"{result.test_case_data.id}"
+                    f"{result.test_case_data.id}{ConsoleColor.RESET}"
                  )
             else:
-                print("\nRegistration failed:")
+                print(f"{ConsoleColor.RED}\nRegistration failed:{ConsoleColor.RESET}")
 
             # Ask whether to register another test case
             test_case_answer = input(
@@ -79,7 +80,7 @@ class TestCaseDialog:
         
     def get_test_cases(self) -> None:
           
-        print("\n--- Registered Test Cases ---")
+        print(f"{ConsoleColor.BOLD}{ConsoleColor.BLUE}\n--- List Of Registered Test Cases ---{ConsoleColor.RESET}")
 
         result = self._service.get_test_cases()
 
@@ -105,7 +106,8 @@ class TestCaseDialog:
             print(f"Test Data: {test_case.test_data}")
             print("Steps:")
             for step in test_case.steps:
-                print(f"  Step {step.id}: {step.instruction}")
+                print(f"Step No.{step.id}")
+                print(f"  Instruction: {step.instruction}")
                 print(f"  Expected Result: {step.expected_result}")
             
 
@@ -114,8 +116,8 @@ class TestCaseDialog:
     def show_menu(self) -> None:
         while True:
             clear_screen()
-            print("\n--- Test Case Management ---")
-            print("1. Register Test Case")
+            print(f"{ConsoleColor.BOLD}{ConsoleColor.YELLOW}--- Test Case Management ---{ConsoleColor.RESET}")
+            print(f"1. Register Test Case")
             print("2. Show All Test Cases")
             print("0. Exit")
 

@@ -1,5 +1,5 @@
 import re, os
-
+from utilities.console_color import ConsoleColor
 def get_required_input(prompt: str) -> str:
 
     while True:
@@ -8,7 +8,7 @@ def get_required_input(prompt: str) -> str:
         if value:
             return value
 
-        print("\033[91mError: This field is required!\033[0m")
+        print(f"{ConsoleColor.RED}This field is required!{ConsoleColor.RESET}")
 
 def check_test_case_id(prompt: str) -> str:
 
@@ -19,8 +19,8 @@ def check_test_case_id(prompt: str) -> str:
             return test_case_id
 
         print(
-            "\033[91mInvalid Test Case ID! "
-            "Use the format TC-001.\033[0m"
+            f"{ConsoleColor.RED}Invalid Test Case ID!"
+            f"Use the format TC-001.{ConsoleColor.RESET}"
         )
 
 def clear_screen() -> None:
