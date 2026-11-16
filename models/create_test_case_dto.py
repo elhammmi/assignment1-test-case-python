@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from models.steps import Step
 
 @dataclass
@@ -8,4 +8,4 @@ class CreateTestCaseDto:
     purpose: str
     preconditions: str
     test_data: str
-    steps: list[Step] = []
+    steps: list[Step] = field(default_factory=list)

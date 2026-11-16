@@ -1,12 +1,13 @@
 from models.test_case import TestCase
 
 class TestCaseRepository:
-    _test_case : list[TestCase]
-    _next_id: int
+    def __init__(self):
+        self._test_cases = list[TestCase]
+        self._next_id=0
 
-    def add(test_case: TestCase) -> TestCase:
-        pass
+    def add(self, test_case: TestCase) -> TestCase:
+        self._test_cases.append(test_case)
     
-    def getAll() -> list[TestCase]:
-        pass
+    def get_all(self) -> list[TestCase]:
+        return self._test_cases.copy()
  
