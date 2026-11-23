@@ -20,7 +20,7 @@ class TestCaseService:
         
         # Normalize Test Case ID
         test_case_id = test_case_dto.test_case_id.strip().upper()
-        
+
         # Validate Test Case ID
         if not re.fullmatch(r"TC-[0-9]{3}", test_case_id):
             errors.append("Test Case ID must follow the format TC-001.")
@@ -74,12 +74,12 @@ class TestCaseService:
 
 
 
-        self._repository.add(test_case)
+        test_case_result = self._repository.add(test_case)
         return CreateTestCaseResult(
             succeeded=True,
             message="Test case registered successfully.",
             errors=[],
-            test_case_data=test_case
+            test_case_data=test_case_result
         )
 
     def get_test_cases(self) -> GetTestCasesResult:
