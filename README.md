@@ -64,6 +64,12 @@ I based the implementation on my UML diagrams. The diagrams are available in a s
 
 I separated the application into Models, Dialog, Service, Repository, and Utilities to give each component a clear responsibility. The Dialog handles user interaction, the Service handles validation and application logic, and the Repository manages in-memory storage. `CreateTestCaseDto` carries registration data to the Service, and result objects return the outcome of operations.
 
+- **Readability:**  Separating the code into different components makes it easier to understand what each part of the application does. The Dialog handles user interaction, the Service handles validation and application logic, and the Repository manages in-memory storage.
+
+- **Maintainability:** Changes can be made to individual components without affecting the entire application. For example, the Repository could be updated to use a database instead of in-memory storage without changing the other parts.
+
+- **Testability:** The Service receives the Repository through dependency injection, which makes it easier to test the application logic independently.
+
 ## Limitations
 
 - Data is not saved after the program exits.
