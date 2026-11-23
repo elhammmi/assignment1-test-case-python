@@ -11,8 +11,11 @@ class TestCaseService:
         self._repository: TestCaseRepository = repository
 
     def register_test_case(self, test_case_dto: CreateTestCaseDto) -> CreateTestCaseResult:
+        
         errors = []
 
+        if not test_case_dto:
+            return CreateTestCaseResult(succeeded=False, message="The registration failed.",errors=[],test_case_data=None)
         # Normalize Test Case ID
         test_case_id = test_case_dto.test_case_id.strip().upper()
         # Validate Test Case ID

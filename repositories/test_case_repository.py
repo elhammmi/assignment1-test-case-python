@@ -9,6 +9,7 @@ class TestCaseRepository:
         test_case.id = self._next_id
         self._test_cases.append(test_case)
         self._next_id += 1
+        return test_case
     
     def get_all(self) -> list[TestCase]:
         return self._test_cases.copy()
