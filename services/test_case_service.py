@@ -15,7 +15,8 @@ class TestCaseService:
         errors = []
 
         if not test_case_dto:
-            return CreateTestCaseResult(succeeded=False, message="The registration failed.",errors=[],test_case_data=None)
+            errors.append("Something went wrong")
+            return CreateTestCaseResult(succeeded=False, message="The test case registration failed.",errors=errors,test_case_data=None)
         # Normalize Test Case ID
         test_case_id = test_case_dto.test_case_id.strip().upper()
         # Validate Test Case ID
