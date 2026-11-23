@@ -9,4 +9,4 @@ class TestCase:
     preconditions: str
     test_data: str
     steps: list[Step] = field(default_factory=list)
-    id: int = 0
+    id: int = 1

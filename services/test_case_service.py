@@ -17,8 +17,10 @@ class TestCaseService:
         if not test_case_dto:
             errors.append("Something went wrong")
             return CreateTestCaseResult(succeeded=False, message="The test case registration failed.",errors=errors,test_case_data=None)
+        
         # Normalize Test Case ID
         test_case_id = test_case_dto.test_case_id.strip().upper()
+        
         # Validate Test Case ID
         if not re.fullmatch(r"TC-[0-9]{3}", test_case_id):
             errors.append("Test Case ID must follow the format TC-001.")
